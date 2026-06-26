@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Patient Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Mobile friendly styles */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h1 {
+            text-align: center;
+        }
+        .nav-links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav-links a {
+            color: #0066cc;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        .cancel-btn {
+            display: inline-block;
+            background-color: #f44336;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+        .cancel-btn:hover {
+            background-color: #da190b;
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            input {
+                font-size: 14px;
+                padding: 8px;
+            }
+            button {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Patient Data</h1>
+    
+    <div class="nav-links">
+        <a href="/">Add New</a> |
+        <a href="/view">View All Data</a>
+    </div>
+    
+    {% if record %}
+    <form method="POST" action="/edit/{{ record.id }}">
+        <div class="form-group">
+            <label for="room_number">Room Number:</label>
+            <input type="text" id="room_number" name="room_number" value="{{ record.room_number }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ record.name }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" value="{{ record.phone }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="id">ID Number:</label>
+            <input type="text" id="id" name="id" value="{{ record.id_number }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="doctorname">Doctor Name:</label>
+            <input type="text" id="doctorname" name="doctorname" value="{{ record.doctor_name }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="diet">Diet:</label>
+            <input type="text" id="diet" name="diet" value="{{ record.diet }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="dietskill">Diet Skill:</label>
+            <input type="text" id="dietskill" name="dietskill" value="{{ record.diet_skill }}" required>
+        </div>
+        
+        <button type="submit">Update Record</button>
+        <a href="/view" class="cancel-btn">Cancel</a>
+    </form>
+    {% else %}
+    <p>Record not found!</p>
+    <a href="/view">Back to View</a>
+    {% endif %}
+</body>
+</html>
